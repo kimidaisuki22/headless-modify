@@ -2,6 +2,7 @@
 #include "print.h"
 #include <cstdint>
 #include <iostream>
+#include <string>
 
 int main() {
   {
@@ -15,10 +16,13 @@ int main() {
     for (uint32_t i = 0; i < count; i++) {
 
       std::cout << "Device " << i << ":" << std::endl;
-      print_physical_device_info(devices[i]);
-      print_elem_array(get_device_queue_props(devices[i]),
-                       print_queue_family_props_info, "Queue props");
-
+      // print_physical_device_info(devices[i]);
+      auto queue_props = devices[i].getQueueFamilyProperties();
+      for (auto prop : queue_props) {
+        std::cout << "queue count: " << prop.queueCount << "\n";
+        std::cout << to_string(prop.queueFlags) << "\n";
+        std::cout << std::string(32, '-') << "\n";
+      }
       std::cout << "-----------------------" << std::endl;
     }
   }
