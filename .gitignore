@@ -1,0 +1,4 @@
+vulkan-sdk
+build
+.cache
+*.stl
