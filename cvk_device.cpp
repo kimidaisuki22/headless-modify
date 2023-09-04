@@ -1,7 +1,7 @@
 #include "cvk_device.h"
 #include <iostream>
 #include <vulkan/vulkan_core.h>
-#include <spdlog/spdlog.h>
+// #include <spdlog/spdlog.h>
 VkInstance create_simple_instance() {
   VkInstanceCreateInfo info{};
   info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -9,11 +9,11 @@ VkInstance create_simple_instance() {
   auto result = vkCreateInstance(&info, nullptr, &ins);
 
   if(result != VK_SUCCESS){
-    SPDLOG_ERROR("Failed to setup instance\n");
-    SPDLOG_INFO("Maybe you not install vulkan loader, you can install it by: sudo apt install  libvulkan1");
+    // SPDLOG_ERROR("Failed to setup instance\n");
+    // SPDLOG_INFO("Maybe you not install vulkan loader, you can install it by: sudo apt install  libvulkan1");
     exit(1);
   }
-  
+
   return ins;
 }
 std::vector<VkPhysicalDevice> enumerate_physical_devices(VkInstance instance) {
