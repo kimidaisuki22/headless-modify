@@ -4,7 +4,7 @@
 #include <vulkan/vulkan.hpp>
 
 vk::Instance create_simple_instance();
-std::vector<VkPhysicalDevice> enumerate_physical_devices(VkInstance instance);
+
 void print_physical_device_info(VkPhysicalDevice device);
 std::vector<VkQueueFamilyProperties>
 get_device_queue_props(VkPhysicalDevice device);

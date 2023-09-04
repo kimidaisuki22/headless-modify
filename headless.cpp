@@ -6,7 +6,9 @@
 int main() {
   {
     auto instance = create_simple_instance();
-    auto devices = enumerate_physical_devices(instance);
+    // instance.createDebugUtilsMessengerEXT();
+    // auto devices = enumerate_physical_devices(instance);
+    auto devices = instance.enumeratePhysicalDevices();
 
     uint32_t count = devices.size();
     std::cout << "has " << count << " vk device.\n";

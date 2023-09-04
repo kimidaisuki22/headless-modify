@@ -20,15 +20,7 @@ vk::Instance create_simple_instance() {
 
   return vk::createInstance(instanceCreateInfo);
 }
-std::vector<VkPhysicalDevice> enumerate_physical_devices(VkInstance instance) {
-  uint32_t count{};
-  std::vector<VkPhysicalDevice> devices;
 
-  vkEnumeratePhysicalDevices(instance, &count, nullptr);
-  devices.resize(count);
-  vkEnumeratePhysicalDevices(instance, &count, devices.data());
-  return devices;
-}
 void print_physical_device_info(VkPhysicalDevice device) {
   VkPhysicalDeviceProperties prop{};
   vkGetPhysicalDeviceProperties(device, &prop);
