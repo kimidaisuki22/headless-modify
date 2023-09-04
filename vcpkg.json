@@ -3,17 +3,17 @@
     "name": "star",
     "version": "0.0.1",
     "dependencies": [
-       
+
         "fmt",
         "spdlog",
         "glm",
-        
+
         "cli11",
- 
+
         "tinyobjloader",
         "nlohmann-json",
         "vulkan",
-        "vulkan-hpp",
+        "vulkan-headers",
         "stb"
     ]
   }

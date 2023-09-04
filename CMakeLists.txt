@@ -42,8 +42,8 @@ target_link_libraries(headless PUBLIC
 CLI11::CLI11
 cvk
 )
-find_path(VULKAN_HPP_INCLUDE_DIRS "vulkan/vulkan.hpp")
-target_include_directories(cvk PRIVATE ${VULKAN_HPP_INCLUDE_DIRS})
+find_package(VulkanHeaders CONFIG)
+target_link_libraries(cvk PRIVATE Vulkan::Headers)
 
 # add_executable(render render.cpp)
 # target_link_libraries(render PUBLIC

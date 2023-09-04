@@ -1,10 +1,12 @@
 #include "cvk_device.h"
+#include "print.h"
 #include <cstdint>
 #include <iostream>
-#include "print.h"
+
 int main() {
   {
-    auto devices = enumerate_physical_devices(create_simple_instance());
+    auto instance = create_simple_instance();
+    auto devices = enumerate_physical_devices(instance);
 
     uint32_t count = devices.size();
     std::cout << "has " << count << " vk device.\n";

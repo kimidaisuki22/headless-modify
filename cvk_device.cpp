@@ -1,20 +1,24 @@
 #include "cvk_device.h"
 #include <iostream>
+#include <vulkan/vulkan.hpp>
 #include <vulkan/vulkan_core.h>
+#include <vulkan/vulkan_handles.hpp>
+#include <vulkan/vulkan_to_string.hpp>
+
 // #include <spdlog/spdlog.h>
-VkInstance create_simple_instance() {
+vk::Instance create_simple_instance() {
   VkInstanceCreateInfo info{};
   info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
   VkInstance ins;
   auto result = vkCreateInstance(&info, nullptr, &ins);
+  // initialize the vk::ApplicationInfo structure
+  vk::ApplicationInfo applicationInfo("APP", 1, "Engine", 1,
+                                      VK_API_VERSION_1_1);
 
-  if(result != VK_SUCCESS){
-    // SPDLOG_ERROR("Failed to setup instance\n");
-    // SPDLOG_INFO("Maybe you not install vulkan loader, you can install it by: sudo apt install  libvulkan1");
-    exit(1);
-  }
+  // initialize the vk::InstanceCreateInfo
+  vk::InstanceCreateInfo instanceCreateInfo({}, &applicationInfo);
 
-  return ins;
+  return vk::createInstance(instanceCreateInfo);
 }
 std::vector<VkPhysicalDevice> enumerate_physical_devices(VkInstance instance) {
   uint32_t count{};
@@ -171,6 +175,7 @@ get_device_queue_props(VkPhysicalDevice device) {
   return queueFamilies;
 }
 void print_queue_family_props_info(VkQueueFamilyProperties props) {
+  // std::cout << VULKAN_HPP_NAMESPACE::to_string(props);
   std::cout << "Queue Count: " << props.queueCount << std::endl;
   std::cout << "Graphics Queue: "
             << ((props.queueFlags & VK_QUEUE_GRAPHICS_BIT) ? "Supported"

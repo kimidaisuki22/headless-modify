@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
 #include <vulkan/vulkan.h>
+#include <vulkan/vulkan.hpp>
 
-VkInstance create_simple_instance();
+vk::Instance create_simple_instance();
 std::vector<VkPhysicalDevice> enumerate_physical_devices(VkInstance instance);
 void print_physical_device_info(VkPhysicalDevice device);
 std::vector<VkQueueFamilyProperties>
