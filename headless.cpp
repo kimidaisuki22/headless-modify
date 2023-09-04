@@ -4,8 +4,20 @@
 #include <iostream>
 #include <string>
 
+void print_vulkan_api_version() {
+  auto decodeAPIVersion = [](uint32_t apiVersion) -> std::string {
+    return std::to_string(VK_VERSION_MAJOR(apiVersion)) + "." +
+           std::to_string(VK_VERSION_MINOR(apiVersion)) + "." +
+           std::to_string(VK_VERSION_PATCH(apiVersion));
+  };
+
+  uint32_t apiVersion = vk::enumerateInstanceVersion();
+  std::cout << "APIVersion = " << decodeAPIVersion(apiVersion) << std::endl;
+}
+
 int main() {
   {
+    print_vulkan_api_version();
     auto instance = create_simple_instance();
     // instance.createDebugUtilsMessengerEXT();
     // auto devices = enumerate_physical_devices(instance);
