@@ -1,5 +1,5 @@
 #include "cvk_device.h"
-#include "print.h"
+
 #include <cstdint>
 #include <iomanip>
 #include <iostream>
@@ -21,7 +21,6 @@ int main() {
     print_vulkan_api_version();
     auto instance = create_simple_instance();
     // instance.createDebugUtilsMessengerEXT();
-    // auto devices = enumerate_physical_devices(instance);
     auto devices = instance.enumeratePhysicalDevices();
 
     uint32_t count = devices.size();
