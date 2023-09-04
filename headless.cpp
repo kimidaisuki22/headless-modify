@@ -1,6 +1,7 @@
 #include "cvk_device.h"
 #include "print.h"
 #include <cstdint>
+#include <iomanip>
 #include <iostream>
 #include <string>
 
@@ -31,9 +32,8 @@ int main() {
       // print_physical_device_info(devices[i]);
       auto queue_props = devices[i].getQueueFamilyProperties();
       for (auto prop : queue_props) {
-        std::cout << "queue count: " << prop.queueCount << "\n";
+        std::cout << "queue count["<< std::setw(2) << prop.queueCount << "] props: ";
         std::cout << to_string(prop.queueFlags) << "\n";
-        std::cout << std::string(32, '-') << "\n";
       }
       std::cout << "-----------------------" << std::endl;
     }
